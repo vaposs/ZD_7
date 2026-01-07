@@ -7,6 +7,7 @@ namespace ZD_7
         public static void Main(string[] args)
         {
             Weapon weapon = new Weapon(-1);
+            //Weapon weapon = new Weapon(5);
         }
     }
 
@@ -14,26 +15,28 @@ namespace ZD_7
     {
         private const int CostPerShot = 1;
 
-        private int _maxBullets;
         private int _bullets;
+
+        public int MaxBullets { get; }
 
         public Weapon(int maxBullets)
         {
             if (maxBullets < 0)
+            {
                 throw new ArgumentException("Максимальное количество пуль не может быть отрицательным", nameof(maxBullets));
+            }
 
-            _maxBullets = maxBullets;
+            MaxBullets = maxBullets;
             _bullets = maxBullets;
         }
 
         public int Bullets => _bullets;
-        public int MaxBullets => _maxBullets;
         public bool CanShoot => _bullets >= CostPerShot;
 
         public void Shoot()
         {
-            if (!CanShoot)
-            _bullets -= CostPerShot;
+            if (CanShoot == true)
+                _bullets -= CostPerShot;
         }
     }
 }
